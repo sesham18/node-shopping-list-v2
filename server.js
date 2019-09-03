@@ -42,10 +42,23 @@ app.post('/shopping-list', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-
   const item = ShoppingList.create(req.body.name, req.body.budget);
   res.status(201).json(item);
 });
+
+app.post('/recipes', jsonParser, (req, res) => {
+  const reqFields = ['name', ['ingredients']]; 
+  for (let i=0; i<reqFields.length; i++) {
+    const fie = reqFields[i]; 
+    if(!(fie in req.body)) {
+      const mess = `Missing`; 
+      console.error(mess); 
+      return res.status(400).send(mess);
+    }
+  }
+  const ite = Recipes.create(req.body.name, req.body.ingredients); 
+  res.status(201).json(item); 
+})
 
 
 app.get('/recipes', (req, res) => {
