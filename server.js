@@ -51,7 +51,7 @@ app.post('/recipes', jsonParser, (req, res) => {
   for (let i=0; i<reqFields.length; i++) {
     const fie = reqFields[i]; 
     if(!(fie in req.body)) {
-      const mess = `Missing`; 
+      const mess = `Missing data`; 
       console.error(mess); 
       return res.status(400).send(mess);
     }
